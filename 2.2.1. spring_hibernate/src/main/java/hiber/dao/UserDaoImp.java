@@ -29,9 +29,9 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User setUser(String model, int series) {
-        List<Car> cars = sessionFactory.getCurrentSession().createQuery("from Car where model = :model " +
-                "and series = :series").setParameter("model", model).setParameter("series", series).getResultList();
-        Long id = cars.get(0).getId();
-        return sessionFactory.getCurrentSession().get(User.class, id);
+        //предыдущий вариант был более читабельным
+        return sessionFactory.getCurrentSession().createQuery("from User user where " +
+                "user.userCar.series = :series and user.userCar.model = :model", User.class)
+                .setParameter("series", series).setParameter("model", model).getSingleResult();
     }
 }

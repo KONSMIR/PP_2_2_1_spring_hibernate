@@ -36,7 +36,6 @@ public class MainApp {
       userService.add(user3);
       userService.add(user4);
 
-
       List<User> users = userService.listUsers();
       for (User user : users) {
          System.out.println("Id = "+user.getId());
@@ -47,7 +46,7 @@ public class MainApp {
          System.out.println();
       }
 
-      System.out.println(userService.setUser("model4", 4));
+      System.out.println(userService.setUser("model4", 4).getId());
 
       context.close();
    }
